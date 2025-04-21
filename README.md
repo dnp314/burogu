@@ -1,0 +1,2 @@
+# burogu
+blog website
