@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-miah3qk-r(%er!(uc56pg1cc=s)kgy(^w!1&_vs*3vqwc=88f5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -65,14 +65,7 @@ WSGI_APPLICATION = 'burogu.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test',
-        'USER': 'test',
-        'PASSWORD': 'test',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(default='postgresql://divyesh:p3CqPSezFCscYRE3NvuReLINYm7sCio0@dpg-d04c0q49c44c739g31q0-a/burogu')
 }
 
 
