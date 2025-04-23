@@ -2,7 +2,10 @@ import os
 import dj_database_url
 from decouple import config
 from pathlib import Path
+from dotenv import load_dotenv
+from urllib.parse import urlparse
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,9 +17,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-miah3qk-r(%er!(uc56pg1cc=s)kgy(^w!1&_vs*3vqwc=88f5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['burogu.onrender.com']
+ALLOWED_HOSTS = ['burogu.onrender.com','127.0.0.1']
 
 
 # Application definition
@@ -64,10 +67,14 @@ WSGI_APPLICATION = 'burogu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(default='postgresql://divyesh:p3CqPSezFCscYRE3NvuReLINYm7sCio0@dpg-d04c0q49c44c739g31q0-a/burogu')
-}
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
